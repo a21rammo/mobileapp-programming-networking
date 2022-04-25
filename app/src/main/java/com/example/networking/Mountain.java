@@ -1,6 +1,8 @@
 package com.example.networking;
 
-public class Mountain {
+import androidx.recyclerview.widget.RecyclerView;
+
+public class Mountain{
     private String name;
     private String location;
     private int height;
