@@ -9,16 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-  //   LayoutInflater inflater;
-    List<Mountain> mountain;
 
-    public MyAdapter(Context ctx, List<Mountain> mMountain) {
-        // this.inflater = LayoutInflater.from(ctx);
-        this.mountain = mMountain;
+    private ArrayList<Mountain> mountain;
+
+    public MyAdapter(ArrayList<Mountain> mountain) {
+        this.mountain = mountain;
     }
+
+
 
 
     @NonNull
@@ -48,11 +50,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.name);
             type = itemView.findViewById(R.id.type);
             location = itemView.findViewById(R.id.location);
-
         }
     }
 }
