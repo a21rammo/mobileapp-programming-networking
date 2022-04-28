@@ -48,7 +48,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     @Override
     public void onPostExecute(String json) {
         Log.d("MainActivity", json);
-        mountains = gson.fromJson(json, type);
+        // Creating a new temporary list, We will fetch the json data and put it in there before updating the mountain list.
+        ArrayList<Mountain> temp = new ArrayList <Mountain>();
+        temp = gson.fromJson(json, type);
+        // Clearing the current arraylist before adding the newly fetched one.
+        mountains.clear();
+        mountains.addAll(temp);
+        myAdapter.notifyDataSetChanged();
     }
 
 }

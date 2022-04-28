@@ -22,7 +22,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
 
 
-
     @NonNull
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,8 +32,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         holder.name.setText(mountain.get(position).getName());
-        holder.name.setText(mountain.get(position).getLocation());
-        holder.name.setText(mountain.get(position).getType());
+        holder.location.setText(mountain.get(position).getLocation());
+        holder.type.setText(mountain.get(position).getType());
     }
 
     @Override
