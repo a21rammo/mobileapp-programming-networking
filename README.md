@@ -38,12 +38,41 @@ onBindViewHolder positionerar våra dataVariabler från arraylisten och hämtar 
         holder.type.setText(mountain.get(position).getType());
     }
 ```
+Vi connectar **activity_main.xml** med findviewbyid sen sätter den till new linearlayout för att sedans hämta våran arraylist från myadapter.
+Gson använder vi för "unloada" våran data från JSON. 
+```
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
+        recycler_view = findViewById(R.id.recycler_view);
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
+        mountains = new ArrayList<Mountain>();
+        myAdapter = new MyAdapter(mountains);
+        recycler_view.setAdapter(myAdapter);
 
+        gson = new Gson();
+        type = new TypeToken<ArrayList<Mountain>>() {}.getType();
 
+        new JsonFile(this, this).execute(JSON_FILE);
+        new JsonTask(this).execute(JSON_URL);
+    }
+```
+Kod för att unloada vår data, kommentarerna som är inlagt i kodsnittet och rätt så självförklarande.
 
-
+```
+    public void onPostExecute(String json) {
+        Log.d("MainActivity", json);
+        // Creating a new temporary list, We will fetch the json data and put it in there before updating the mountain list.
+        ArrayList<Mountain> temp = new ArrayList <Mountain>();
+        temp = gson.fromJson(json, type);
+        // Clearing the current arraylist before adding the newly fetched one.
+        mountains.clear();
+        mountains.addAll(temp);
+        myAdapter.notifyDataSetChanged();
+    }
+```
 Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](frontpage.png)
 
