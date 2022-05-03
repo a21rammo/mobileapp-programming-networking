@@ -5,9 +5,6 @@ public class Mountain{
     private String name;
     private String location;
     private String type;
-    private int size;
-    private int cost;
-
 
     public Mountain(String mName, String mLocation, String mType) {
         this.name= mName;
